@@ -1,5 +1,7 @@
 package com.example.rickandmortyapp.ui.screens.characters.rv
 
+// Ojo con los nombres de los paquetes, que no sea solo copiar y pegar clases
+
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelapp.databinding.CharacterViewBinding
@@ -23,6 +25,16 @@ class CharacterPostViewHolder(
                 R.string.character_gender,
                 characters.description.limitLength(10)
             )
+
+//            El error es
+//            Caused by: java.io.IOException: Cleartext HTTP traffic to i.annihil.us not permitted
+//                    at com.android.okhttp.HttpHandler$CleartextURLFilter.checkURLPermitted(HttpHandler.java:127)
+//            at com.android.okhttp.internal.huc.HttpURLConnectionImpl.execute(HttpURLConnectionImpl.java:462)
+//            at com.android.okhttp.internal.huc.HttpURLConnectionImpl.connect(HttpURLConnectionImpl.java:131)
+//            at com.bumptech.glide.load.data.HttpUrlFetcher.loadDataWithRedirects(HttpUrlFetcher.java:93)
+//            Importante apoyarse en los logs de la aplicación
+//            Una solución es habilitar el trafico con http https://stackoverflow.com/a/59808129
+//            Otra solución (recomendada) es modificar el imageUrl para que reemplace "http" por "https"
 
             val imageUrl = "${characters.thumbnail.path}.${characters.thumbnail.extension}"
             Log.d("CharacterPostViewHolder", "Final Image URL: $imageUrl")
