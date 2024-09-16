@@ -16,7 +16,6 @@ class RVCharactersAdapter(
                 val imageUrl = "${character.thumbnail.path}.${character.thumbnail.extension}"
                 !isImageNotAvailable(imageUrl)
             }
-            notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterPostViewHolder {
