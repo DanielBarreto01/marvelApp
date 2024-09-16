@@ -15,16 +15,14 @@ class CharacterPostViewHolder(
 ): RecyclerView.ViewHolder(binding.root) {
     fun bind(characters: Character) {
         with(binding) {
-
-
             tvCharacterName.text = characters.name
 
-            tvDescription.text = tvDescription.context.getString(
-                R.string.character_gender,
-                characters.description.limitLength(10)
-            )
 
-            val imageUrl = "${characters.thumbnail.path}.${characters.thumbnail.extension}"
+            var imageUrl = "${characters.thumbnail.path}.${characters.thumbnail.extension}"
+            if (imageUrl.startsWith("http:")) {
+                imageUrl = imageUrl.replace("http:", "https:")
+            }
+
             Log.d("CharacterPostViewHolder", "Final Image URL: $imageUrl")
             ivCharacterPicture.loadImage(imageUrl)
         }

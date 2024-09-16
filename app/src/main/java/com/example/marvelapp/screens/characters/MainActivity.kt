@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun initRV() {
         rvCharactersAdapter = RVCharactersAdapter(
-            onEpisodesClickListener = { id -> /* tu lógica aquí */ },
-            onLocationClickListener = { id -> /* tu lógica aquí */ }
         )
         binding.rvCharacters.apply {
             layoutManager = GridLayoutManager(this@MainActivity, 3)

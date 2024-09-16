@@ -31,7 +31,8 @@ class CharactersViewModel : ViewModel() {
             val response = retrofitApi.getCharacters(
                 ts = Config.TS,
                 apikey = Config.API_KEY,
-                hash = Config.HASH
+                hash = Config.HASH,
+                limit = Config.LIMIT
             )
             Log.d("CharactersViewModel", "API Response: $response")
             _uiState.value = _uiState.value.copy(

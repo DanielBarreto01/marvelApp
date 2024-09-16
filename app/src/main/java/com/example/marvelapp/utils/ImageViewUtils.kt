@@ -14,4 +14,6 @@ fun ImageView.loadImage(url: String) {
         .into(this)
 }
 
-
+fun isImageNotAvailable(url: String): Boolean {
+    return url.contains("image_not_available")
+}

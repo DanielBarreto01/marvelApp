@@ -5,13 +5,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelapp.data.api.models.Character
 import com.example.marvelapp.databinding.CharacterViewBinding
+import com.example.marvelapp.utils.isImageNotAvailable
 
 class RVCharactersAdapter(
-    private val onEpisodesClickListener: (id: Int) -> Unit,
-    private val onLocationClickListener: (id: Int) -> Unit
 ): RecyclerView.Adapter<CharacterPostViewHolder>() {
 
     var characters = emptyList<Character>()
+        set(value) {
+            field = value.filter { character ->
+                val imageUrl = "${character.thumbnail.path}.${character.thumbnail.extension}"
+                !isImageNotAvailable(imageUrl)
+            }
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterPostViewHolder {
         val binding = CharacterViewBinding.inflate(
@@ -27,5 +33,4 @@ class RVCharactersAdapter(
     }
 
     override fun getItemCount(): Int = characters.size
-
 }
