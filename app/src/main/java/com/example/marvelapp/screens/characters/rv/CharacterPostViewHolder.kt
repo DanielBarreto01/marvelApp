@@ -10,13 +10,16 @@ import com.example.marvelapp.utils.loadImage
 
 class CharacterPostViewHolder(
     private val binding: CharacterViewBinding,
-
+    private val onInspectCharaterClickListener: (id: Int) -> Unit
 
 ): RecyclerView.ViewHolder(binding.root) {
     fun bind(characters: Character) {
         with(binding) {
             tvCharacterName.text = characters.name
 
+            ivCharacterPicture.setOnClickListener {
+                onInspectCharaterClickListener(characters.id)
+            }
 
             var imageUrl = "${characters.thumbnail.path}.${characters.thumbnail.extension}"
             if (imageUrl.startsWith("http:")) {

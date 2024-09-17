@@ -8,6 +8,7 @@ import com.example.marvelapp.databinding.CharacterViewBinding
 import com.example.marvelapp.utils.isImageNotAvailable
 
 class RVCharactersAdapter(
+    private val onInspectCharaterClickListener: (id: Int) -> Unit
 ): RecyclerView.Adapter<CharacterPostViewHolder>() {
 
     var characters = emptyList<Character>()
@@ -24,7 +25,10 @@ class RVCharactersAdapter(
             parent,
             false
         )
-        return CharacterPostViewHolder(binding)
+        return CharacterPostViewHolder(
+            binding = binding,
+            onInspectCharaterClickListener= onInspectCharaterClickListener
+        )
     }
 
     override fun onBindViewHolder(holder: CharacterPostViewHolder, position: Int) {

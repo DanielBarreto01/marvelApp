@@ -1,13 +1,17 @@
 package com.example.marvelapp.screens.characters
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.marvelapp.databinding.ActivityMainCharactersBinding
 import com.example.marvelapp.data.viewmodel.CharactersViewModel
+import com.example.marvelapp.screens.inspectCharacter.InspecCharacterActivity
+import com.example.marvelapp.screens.inspectCharacter.InspecCharacterActivity.Companion.CHARACTER_ID
 import com.example.rickandmortyapp.ui.screens.characters.rv.RVCharactersAdapter
 import kotlinx.coroutines.launch
 
@@ -27,11 +31,28 @@ class MainActivity : AppCompatActivity() {
 
     private fun initRV() {
         rvCharactersAdapter = RVCharactersAdapter(
+            onInspectCharaterClickListener = { characterId ->
+                launchInspectCharacterActivity(characterId)
+            }
         )
         binding.rvCharacters.apply {
             layoutManager = GridLayoutManager(this@MainActivity, 3)
             adapter = rvCharactersAdapter
         }
+    }
+    private fun launchInspectCharacterActivity(characterId: Int) {
+        startActivity(
+            Intent(
+                this,
+                InspecCharacterActivity::class.java
+            ).apply {
+                putExtras(
+                    bundleOf(
+                        CHARACTER_ID to characterId
+                    )
+                )
+            }
+        )
     }
 
     private fun initUiStateLifecycle() {
