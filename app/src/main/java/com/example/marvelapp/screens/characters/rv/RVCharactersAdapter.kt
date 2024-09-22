@@ -3,7 +3,7 @@ package com.example.rickandmortyapp.ui.screens.characters.rv
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.marvelapp.data.api.models.Character
+import com.example.marvelapp.data.api.models.characters.Character
 import com.example.marvelapp.databinding.CharacterViewBinding
 import com.example.marvelapp.utils.isImageNotAvailable
 

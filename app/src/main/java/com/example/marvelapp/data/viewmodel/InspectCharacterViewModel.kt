@@ -3,7 +3,6 @@ package com.example.marvelapp.data.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.util.copy
 import com.example.marvelapp.config.Config
 import com.example.marvelapp.data.api.retrofit.RetrofitService
 import com.example.marvelapp.screens.inspectCharacter.uiState.InspectCharacterUiState
@@ -11,7 +10,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import kotlin.math.log
 
 
 class InspectCharacterViewModel:ViewModel() {
@@ -29,6 +27,41 @@ class InspectCharacterViewModel:ViewModel() {
             val newUiState = _uiState.value.copy(
                 character = response.data.results[0],
                 isCharacterLoading = false
+            )
+            _uiState.value = newUiState
+        }
+    }
+
+    // InspectCharacterViewModel.kt
+    fun getCharacterComics(characterId: Int) {
+        viewModelScope.launch {
+            val response = retrofitApi.getCharacterComics(
+                characterId,
+                ts = Config.TS,
+                apikey = Config.API_KEY,
+                hash = Config.HASH,
+            )
+            Log.d("InspectCharacterViewModel", "API Response comics: ${response.data.results}")
+            val newUiState = _uiState.value.copy(
+                Comics = response.data.results,
+                isComicsListLoading = false
+            )
+            _uiState.value = newUiState
+        }
+    }
+
+    fun getCharacterSeries(characterId: Int) {
+        viewModelScope.launch {
+            val response = retrofitApi.getCharacterSeries(
+                characterId,
+                ts = Config.TS,
+                apikey = Config.API_KEY,
+                hash = Config.HASH,
+            )
+            Log.d("InspectCharacterViewModel", "API Response series: ${response.data.results}")
+            val newUiState = _uiState.value.copy(
+                Series= response.data.results,
+                isSeriesListLoading = false
             )
             _uiState.value = newUiState
         }

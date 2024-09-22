@@ -3,9 +3,7 @@ package com.example.rickandmortyapp.ui.screens.characters.rv
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelapp.databinding.CharacterViewBinding
-import com.example.marvelapp.R
-import com.example.marvelapp.data.api.models.Character
-import com.example.marvelapp.utils.limitLength
+import com.example.marvelapp.data.api.models.characters.Character
 import com.example.marvelapp.utils.loadImage
 
 class CharacterPostViewHolder(

@@ -16,7 +16,7 @@
         android:theme="@style/Theme.MarvelApp"
         tools:targetApi="31">
         <activity android:name=".screens.inspectCharacter.InspecCharacterActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".screens.characters.MainActivity"
             android:exported="true">
